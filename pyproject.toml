@@ -1,0 +1,62 @@
+[project]
+name = "ntfy-blade-mcp"
+version = "0.1.0"
+description = "ntfy push notification MCP Server — publish, poll, topic and token management"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.12"
+authors = [{name = "Piers"}]
+keywords = ["ntfy", "notifications", "push", "mcp"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Communications",
+    "License :: OSI Approved :: MIT License",
+]
+
+dependencies = [
+    "fastmcp>=2.0.0",
+    "pydantic>=2.0.0",
+    "httpx>=0.28.0",
+]
+
+[dependency-groups]
+test = ["pytest>=8.0.0", "pytest-asyncio>=0.24.0", "pytest-mock>=3.14.0", "pytest-cov>=6.0.0", "respx>=0.22.0"]
+dev = ["ruff>=0.9.0", "mypy>=1.14.0"]
+
+[project.scripts]
+ntfy-blade-mcp = "ntfy_blade_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ntfy_blade_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = ["e2e: end-to-end tests requiring a live ntfy server"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+strict_equality = true
+show_error_codes = true
+pretty = true

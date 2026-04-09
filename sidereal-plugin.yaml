@@ -1,0 +1,67 @@
+name: ntfy-blade-mcp
+version: "0.1.0"
+description: "ntfy push notification MCP — publish, poll, topic and token management"
+author: groupthink-dev
+licence: MIT
+tier: certified
+contract: notifications-push-v1
+
+services:
+  notifications:
+    info: ntfy_info
+    publish: ntfy_publish
+    cancel: ntfy_cancel
+    poll: ntfy_poll
+    account: ntfy_account
+  topics:
+    reserve: ntfy_reserve
+    unreserve: ntfy_unreserve
+  tokens:
+    create: ntfy_token_create
+    extend: ntfy_token_extend
+    revoke: ntfy_token_revoke
+
+setup:
+  icon: "🔔"
+  blurb: "Send push notifications, poll topics, manage access tokens via ntfy"
+  auth_model: bearer_token
+  complexity: simple
+
+install:
+  runtime: python
+  package: ntfy-blade-mcp
+  command: ntfy-blade-mcp
+
+env:
+  - name: NTFY_BASE_URL
+    secret: false
+    required: true
+    description: "ntfy server URL (e.g. https://ntfy.sh or self-hosted)"
+  - name: NTFY_TOKEN
+    secret: true
+    required: false
+    description: "Bearer token (tk_...). Optional for public topics"
+  - name: NTFY_DEFAULT_TOPIC
+    secret: false
+    required: false
+    description: "Default topic when none specified in publish"
+  - name: NTFY_WRITE_ENABLED
+    secret: false
+    required: false
+    description: "Set to 'true' to enable write operations"
+  - name: TRANSPORT
+    secret: false
+    required: false
+    description: "stdio (default) or http"
+  - name: NTFY_MCP_PORT
+    secret: false
+    required: false
+    description: "HTTP transport port (default: 8773)"
+  - name: NTFY_MCP_API_TOKEN
+    secret: true
+    required: false
+    description: "Bearer token for HTTP transport auth"
+
+conformance:
+  required: "10/10"
+  last_tested: null
