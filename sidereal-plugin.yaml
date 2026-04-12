@@ -4,6 +4,8 @@ description: "ntfy push notification MCP — publish, poll, topic and token mana
 author: groupthink-dev
 licence: MIT
 tier: certified
+author_type: first-party
+readiness: beta
 contract: notifications-push-v1
 
 services:
