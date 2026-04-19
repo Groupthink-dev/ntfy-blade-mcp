@@ -30,7 +30,7 @@ setup:
   complexity: simple
 
 install:
-  runtime: python
+  runtime: uv
   package: ntfy-blade-mcp
   command: ntfy-blade-mcp
 
