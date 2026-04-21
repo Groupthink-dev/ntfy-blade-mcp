@@ -28,6 +28,28 @@ setup:
   blurb: "Send push notifications, poll topics, manage access tokens via ntfy"
   auth_model: bearer_token
   complexity: simple
+  fields:
+    - key: NTFY_BASE_URL
+      label: "Server URL"
+      required: true
+      placeholder: "https://ntfy.sh"
+      help: "ntfy server URL — use ntfy.sh or your self-hosted instance"
+    - key: NTFY_TOKEN
+      label: "Access Token"
+      secret: true
+      required: false
+      placeholder: "tk_..."
+      help: "Bearer token for authenticated topics. Optional for public topics"
+    - key: NTFY_DEFAULT_TOPIC
+      label: "Default Topic"
+      required: false
+      placeholder: "my-alerts"
+      help: "Used when no topic is specified in publish"
+    - key: NTFY_WRITE_ENABLED
+      label: "Enable write operations"
+      type: boolean
+      required: false
+      help: "Publish notifications, manage topics and tokens"
 
 install:
   runtime: uv
@@ -51,18 +73,6 @@ env:
     secret: false
     required: false
     description: "Set to 'true' to enable write operations"
-  - name: TRANSPORT
-    secret: false
-    required: false
-    description: "stdio (default) or http"
-  - name: NTFY_MCP_PORT
-    secret: false
-    required: false
-    description: "HTTP transport port (default: 8773)"
-  - name: NTFY_MCP_API_TOKEN
-    secret: true
-    required: false
-    description: "Bearer token for HTTP transport auth"
 
 conformance:
   required: "10/10"
